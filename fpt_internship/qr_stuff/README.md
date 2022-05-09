@@ -10,7 +10,7 @@ working with computer vision to detect objects, QRcodes and ARtags
 opencv-python
 pyzbar
 numpy
-qrcode
+qrcode[pil] (include pillow for generating images)
 ```
 
 
