@@ -20,6 +20,7 @@ class QrCode:
 
     def save_qr_as_png(self):
         self.qr_code.save("qr_id_" + str(self.id) + ".png")
+        return ("qr_id_" + str(self.id) + ".png")
 
     def save_qr_into_directory(self):
         self.qr_code.save("QRcodes/" + str(self.id) + ".png")
