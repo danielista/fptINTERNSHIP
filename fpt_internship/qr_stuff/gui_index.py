@@ -2,12 +2,14 @@ import kivy
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+import time
 import qrcode
 
 class QrCode:
@@ -49,10 +51,25 @@ class SecondWindow(Screen):
 class ThirdWindow(Screen):
     pass
 
-class qr_gui(GridLayout):
+class qr_gui_creating(GridLayout):
     def create_qr_code_with_id_textinput(self):
         code = QrCode(self.id_input.text)
         self.image.source = code.save_qr_into_directory()
+
+class qr_scanner(GridLayout):
+    pass
+
+class CameraClick(BoxLayout):
+    def capture(self):
+        '''
+        Function to capture the images and give them the names
+        according to their captured time and date.
+        '''
+        camera = self.ids['camera']
+        timestr = time.strftime("%Y%m%d_%H%M%S")
+        camera.export_to_png("IMG_{}.png".format(timestr))
+        print("Captured")
+
 
 class WindowManager(ScreenManager):
     pass
