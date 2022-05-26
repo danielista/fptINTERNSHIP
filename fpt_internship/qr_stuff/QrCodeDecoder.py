@@ -23,6 +23,8 @@ def decoder(image):
 
 
 cap = cv2.VideoCapture(0)
+
+# prerobiť
 while True:
     ret, frame = cap.read()
     decoder(frame)

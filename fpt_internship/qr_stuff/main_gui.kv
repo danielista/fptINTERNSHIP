@@ -1,0 +1,93 @@
+WindowManager:
+	FirstWindow:
+	SecondWindow:
+	ThirdWindow:
+
+
+<FirstWindow>:
+	name: "first"
+
+	BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+
+		Label:
+			markup: True
+			font_size: 32
+			text: "[color=#a12c3c][b]QR codes manager [/color][sup]APP[/sup][/b]  [sub]by Daniel Martinek[/sub]"
+
+
+		Button:
+			text: "Create"
+			font_size: 32
+			on_release:
+				app.root.current = "second"
+				root.manager.transition.direction = "down"
+
+		Button:
+			text: "Scan"
+			font_size: 32
+			on_release:
+				app.root.current = "third"
+				root.manager.transition.direction = "down"
+
+
+<SecondWindow>:
+	name: "second"
+
+	BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+
+		Label:
+			text: "QR code scanner"
+			font_size: 32
+
+        qr_gui:
+
+		Button:
+			text: "Go Back"
+			font_size: 32
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
+
+
+
+<qr_gui>:
+    cols: 2
+    id_input: qr_id_input
+    image: qr_image
+
+    Button:
+        text: "Create QR Code"
+        on_press: root.create_qr_code_with_id_textinput()
+    TextInput:
+        id: qr_id_input
+        text: "Enter id for new qr"
+        multiline: False
+
+    Image:
+        id: qr_image
+        source: ""
+        allow_stretch: True
+
+
+
+<ThirdWindow>:
+	name: "third"
+
+	BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+
+		Label:
+			text: "QR code generator"
+			font_size: 32
+
+		Button:
+			text: "Go Back"
+			font_size: 32
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
